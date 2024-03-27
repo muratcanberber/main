@@ -1,0 +1,462 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Entities
+ majorVersion="9"
+ minorVersion="5"
+ universal="password">
+    <ThingTemplates>
+        <ThingTemplate
+         aspect.isSystemObject="true"
+         baseThingTemplate="AnalyticsJobServer"
+         description=""
+         documentationContent=""
+         effectiveThingPackage="RemoteThing"
+         homeMashup=""
+         inheritedValueStream=""
+         name="ProfilingMicroserver"
+         projectName=""
+         tags=""
+         thingPackage=""
+         valueStream="">
+            <avatar></avatar>
+            <DesignTimePermissions>
+                <Create></Create>
+                <Read></Read>
+                <Update></Update>
+                <Delete></Delete>
+                <Metadata></Metadata>
+            </DesignTimePermissions>
+            <RunTimePermissions></RunTimePermissions>
+            <VisibilityPermissions>
+                <Visibility></Visibility>
+            </VisibilityPermissions>
+            <ConfigurationTableDefinitions></ConfigurationTableDefinitions>
+            <ConfigurationTables>
+                <ConfigurationTable
+                 dataShapeName=""
+                 description="Reporting Settings"
+                 isMultiRow="false"
+                 name="ReportingConfiguration"
+                 ordinal="0">
+                    <DataShape>
+                        <FieldDefinitions>
+                            <FieldDefinition
+                             aspect.defaultValue="NotReporting"
+                             aspect.isPrimaryKey="true"
+                             aspect.isReadOnly="false"
+                             aspect.thingTemplate="ReportingStrategy"
+                             baseType="THINGNAME"
+                             description="Strategy to determine health"
+                             name="reportingStrategy"
+                             ordinal="1"></FieldDefinition>
+                        </FieldDefinitions>
+                    </DataShape>
+                    <Rows>
+                        <Row>
+                            <reportingStrategy>
+                            <![CDATA[
+                            AlwaysOnReporting
+                            ]]>
+                            </reportingStrategy>
+                        </Row>
+                    </Rows>
+                </ConfigurationTable>
+            </ConfigurationTables>
+            <PropertyBindings></PropertyBindings>
+            <RemotePropertyBindings></RemotePropertyBindings>
+            <RemoteServiceBindings>
+                <RemoteServiceBinding
+                 enableQueue="false"
+                 name="CreateCSVForProfileSubpopulation"
+                 sourceName="CreateCSVForProfileSubpopulation"
+                 timeout="0"></RemoteServiceBinding>
+                <RemoteServiceBinding
+                 enableQueue="false"
+                 name="CreateJob"
+                 sourceName="CreateJob"
+                 timeout="0"></RemoteServiceBinding>
+                <RemoteServiceBinding
+                 enableQueue="false"
+                 name="CreateSynonymousJob"
+                 sourceName="CreateSynonymousJob"
+                 timeout="0"></RemoteServiceBinding>
+                <RemoteServiceBinding
+                 enableQueue="false"
+                 name="RetrieveProfileSubpopulation"
+                 sourceName="RetrieveProfileSubpopulation"
+                 timeout="0"></RemoteServiceBinding>
+                <RemoteServiceBinding
+                 enableQueue="false"
+                 name="RetrieveResult"
+                 sourceName="RetrieveResult"
+                 timeout="0"></RemoteServiceBinding>
+                <RemoteServiceBinding
+                 enableQueue="false"
+                 name="RetrieveSynonymousResult"
+                 sourceName="RetrieveSynonymousResult"
+                 timeout="0"></RemoteServiceBinding>
+            </RemoteServiceBindings>
+            <RemoteEventBindings></RemoteEventBindings>
+            <AlertConfigurations></AlertConfigurations>
+            <ThingShape>
+                <PropertyDefinitions></PropertyDefinitions>
+                <ServiceDefinitions>
+                    <ServiceDefinition
+                     category=""
+                     description="Create a CSV file containing a subpopulation of the dataset based on the profiles result"
+                     isAllowOverride="false"
+                     isLocalOnly="true"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="CreateCSVForProfileSubpopulation">
+                        <ResultType
+                         baseType="STRING"
+                         description="ID of the created job"
+                         name="jobId"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             aspect.defaultValue="0"
+                             baseType="INTEGER"
+                             description="ID for a specific profile within the job results. The subpopulation will be generated based on this profile. The initial profileId is 0. The specified profile must not contain n-gram fields."
+                             name="profileId"
+                             ordinal="1"></FieldDefinition>
+                            <FieldDefinition
+                             baseType="STRING"
+                             description="ID of the profiles job result from which to generate the subpopulation. The profiles job must be run on a parquet dataset with allowOverlap enabled."
+                             name="profilesJobId"
+                             ordinal="0"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.dataShape="GenericStringList"
+                             baseType="INFOTABLE"
+                             description="Queryable tags associated with this job"
+                             name="tags"
+                             ordinal="2"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     category=""
+                     description="Identify populations in the data that maximize or minimize the specified goal"
+                     isAllowOverride="false"
+                     isLocalOnly="true"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="CreateJob">
+                        <ResultType
+                         baseType="STRING"
+                         description="ID of the created job"
+                         name="jobId"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             aspect.defaultValue="false"
+                             baseType="BOOLEAN"
+                             description="Indicates whether profiles can overlap or must be mutually exclusive. True = profiles can overlap. False = profiles must be mutually exclusive. Default = False."
+                             name="allowOverlap"
+                             ordinal="9"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.defaultValue="5"
+                             baseType="INTEGER"
+                             description="beamWidth - Determines the width of the profiles search. The smaller the width, the narrower the search for improvements. A larger width may find a more accurate result but can slow the algorithm. (1 - 50, Default = 5)"
+                             name="beamWidth"
+                             ordinal="12"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.defaultValue="UNIFORM"
+                             aspect.selectOptions="UNIFORM:UNIFORM|DENSITY:DENSITY"
+                             baseType="STRING"
+                             description="binningStrategy - Indicates which binning technique is used to fine-tune the profiles search in continuous data (uniform, density, Default = uniform). Uniform = bins are all of equal width. Density = bin width is determined so that each bin has an equal number of records."
+                             name="binningStrategy"
+                             ordinal="13"></FieldDefinition>
+                            <FieldDefinition
+                             baseType="STRING"
+                             description="For a Categorical goal, select the category to be optimized for profile generation (required)."
+                             name="categoryToOptimize"
+                             ordinal="5"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.dataShape="AnalyticsDatasetRef"
+                             baseType="INFOTABLE"
+                             description="Reference to the dataset for this job"
+                             name="datasetRef"
+                             ordinal="2"></FieldDefinition>
+                            <FieldDefinition
+                             baseType="STRING"
+                             description="Optional description for this job"
+                             name="description"
+                             ordinal="1"></FieldDefinition>
+                            <FieldDefinition
+                             baseType="STRING"
+                             description="The field to be minimized or maximized"
+                             name="goalName"
+                             ordinal="4"></FieldDefinition>
+                            <FieldDefinition
+                             baseType="STRING"
+                             description="Name for this job"
+                             name="jobName"
+                             ordinal="0"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.defaultValue="4"
+                             baseType="INTEGER"
+                             description="Maximum number of conditions to include in a profile (1 - 50. affects runtime)"
+                             name="maxDepth"
+                             ordinal="6"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.defaultValue="true"
+                             baseType="BOOLEAN"
+                             description="Maximize or minimize the goal field?"
+                             name="maximize"
+                             ordinal="8"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.defaultValue="1"
+                             baseType="INTEGER"
+                             description="For TEXT fields, the maximum size (in consecutive words) of n-grams (words or phrases) that can be used as features (affects runtime)"
+                             name="maxNGramSize"
+                             ordinal="14"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.defaultValue="10"
+                             baseType="INTEGER"
+                             description="Maximum number of profiles to generate (1 - 100. affects runtime)"
+                             name="maxProfileCount"
+                             ordinal="10"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.defaultValue="1000"
+                             baseType="INTEGER"
+                             description="For TEXT fields, the maximum number of different n-grams of each size that can be used as features"
+                             name="maxVocabSize"
+                             ordinal="15"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.defaultValue="0.0"
+                             baseType="NUMBER"
+                             description="For TEXT fields, the minimum fraction of dataset rows in which an n-gram must appear in order to be used. Allowed values are 0.0 (inclusive) to 1.0 (exclusive)"
+                             name="minDocumentFrequency"
+                             ordinal="16"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.defaultValue="0.0025"
+                             baseType="NUMBER"
+                             description="Percentage below which a population will not be considered a profile (0 - 1)"
+                             name="minPopulationPercentage"
+                             ordinal="7"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.dataShape="GenericStringList"
+                             baseType="INFOTABLE"
+                             description="Queryable tags associated with this job"
+                             name="tags"
+                             ordinal="3"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.defaultValue="true"
+                             baseType="BOOLEAN"
+                             description="Indicates which method is used to determine optimal profiles. True = Use Z Scores (standard deviations from the mean, corrected by the sample population). False = Use Distance from the Mean. Default = True"
+                             name="useZScores"
+                             ordinal="11"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     category=""
+                     description="Identify populations in the data that maximize or minimize the specified goal, with one or more equivalent sets of conditions describing each population"
+                     isAllowOverride="false"
+                     isLocalOnly="true"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="CreateSynonymousJob">
+                        <ResultType
+                         baseType="STRING"
+                         description="ID of the created job"
+                         name="jobId"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             aspect.defaultValue="false"
+                             baseType="BOOLEAN"
+                             description="Indicates whether profiles can overlap or must be mutually exclusive. True = profiles can overlap. False = profiles must be mutually exclusive. Default = False."
+                             name="allowOverlap"
+                             ordinal="9"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.defaultValue="5"
+                             baseType="INTEGER"
+                             description="beamWidth - Determines the width of the profiles search. The smaller the width, the narrower the search for improvements. A larger width may find a more accurate result but can slow the algorithm. (1 - 50, Default = 5)"
+                             name="beamWidth"
+                             ordinal="12"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.defaultValue="UNIFORM"
+                             aspect.selectOptions="UNIFORM:UNIFORM|DENSITY:DENSITY"
+                             baseType="STRING"
+                             description="binningStrategy - Indicates which binning technique is used to fine-tune the profiles search in continuous data (uniform, density, Default = uniform). Uniform = bins are all of equal width. Density = bin width is determined so that each bin has an equal number of records."
+                             name="binningStrategy"
+                             ordinal="13"></FieldDefinition>
+                            <FieldDefinition
+                             baseType="STRING"
+                             description="For a Categorical goal, select the category to be optimized for profile generation (required)."
+                             name="categoryToOptimize"
+                             ordinal="5"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.dataShape="AnalyticsDatasetRef"
+                             baseType="INFOTABLE"
+                             description="Reference to the dataset for this job"
+                             name="datasetRef"
+                             ordinal="2"></FieldDefinition>
+                            <FieldDefinition
+                             baseType="STRING"
+                             description="Optional description for this job"
+                             name="description"
+                             ordinal="1"></FieldDefinition>
+                            <FieldDefinition
+                             baseType="STRING"
+                             description="The field to be minimized or maximized"
+                             name="goalName"
+                             ordinal="4"></FieldDefinition>
+                            <FieldDefinition
+                             baseType="STRING"
+                             description="Name for this job"
+                             name="jobName"
+                             ordinal="0"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.defaultValue="4"
+                             baseType="INTEGER"
+                             description="Maximum number of conditions to include in a profile (1 - 50. affects runtime)"
+                             name="maxDepth"
+                             ordinal="6"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.defaultValue="true"
+                             baseType="BOOLEAN"
+                             description="Maximize or minimize the goal field?"
+                             name="maximize"
+                             ordinal="8"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.defaultValue="1"
+                             baseType="INTEGER"
+                             description="For TEXT fields, the maximum size (in consecutive words) of n-grams (words or phrases) that can be used as features (affects runtime)"
+                             name="maxNGramSize"
+                             ordinal="14"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.defaultValue="10"
+                             baseType="INTEGER"
+                             description="Maximum number of profiles to generate (1 - 100. affects runtime)"
+                             name="maxProfileCount"
+                             ordinal="10"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.defaultValue="1000"
+                             baseType="INTEGER"
+                             description="For TEXT fields, the maximum number of different n-grams of each size that can be used as features"
+                             name="maxVocabSize"
+                             ordinal="15"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.defaultValue="0.0"
+                             baseType="NUMBER"
+                             description="For TEXT fields, the minimum fraction of dataset rows in which an n-gram must appear in order to be used. Allowed values are 0.0 (inclusive) to 1.0 (exclusive)"
+                             name="minDocumentFrequency"
+                             ordinal="16"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.defaultValue="0.0025"
+                             baseType="NUMBER"
+                             description="Percentage below which a population will not be considered a profile (0 - 1)"
+                             name="minPopulationPercentage"
+                             ordinal="7"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.dataShape="GenericStringList"
+                             baseType="INFOTABLE"
+                             description="Queryable tags associated with this job"
+                             name="tags"
+                             ordinal="3"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.defaultValue="true"
+                             baseType="BOOLEAN"
+                             description="Indicates which method is used to determine optimal profiles. True = Use Z Scores (standard deviations from the mean, corrected by the sample population). False = Use Distance from the Mean. Default = True"
+                             name="useZScores"
+                             ordinal="11"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     category=""
+                     description="Retrieve results of a profiles subpopulation job (not safe for large datasets, use SaveJobResults instead)"
+                     isAllowOverride="false"
+                     isLocalOnly="true"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="RetrieveProfileSubpopulation">
+                        <ResultType
+                         baseType="INFOTABLE"
+                         description="A subpopulation based on a profile"
+                         name="profileSubpopulation"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             baseType="STRING"
+                             description="ID of the profiles subpopulation job result to retrieve"
+                             name="jobId"
+                             ordinal="0"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     category=""
+                     description="Retrieve results of a profiling job"
+                     isAllowOverride="false"
+                     isLocalOnly="true"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="RetrieveResult">
+                        <ResultType
+                         aspect.dataShape="AnalyticsProfilingResult"
+                         baseType="INFOTABLE"
+                         description="List of discovered population profiles with conditions and statistics"
+                         name="dataProfiles"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             baseType="STRING"
+                             description="ID of the job result to retrieve"
+                             name="jobId"
+                             ordinal="0"></FieldDefinition>
+                            <FieldDefinition
+                             baseType="STRING"
+                             description="Optional locale for field names and categorical values in the returned result"
+                             name="locale"
+                             ordinal="1"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     category=""
+                     description="Retrieve results of a synonymous profiling job"
+                     isAllowOverride="false"
+                     isLocalOnly="true"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="RetrieveSynonymousResult">
+                        <ResultType
+                         aspect.dataShape="AnalyticsSynonymousProfilingResult"
+                         baseType="INFOTABLE"
+                         description="List of discovered population profiles with conditions and statistics"
+                         name="dataProfiles"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             baseType="STRING"
+                             description="ID of the job result to retrieve"
+                             name="jobId"
+                             ordinal="0"></FieldDefinition>
+                            <FieldDefinition
+                             baseType="STRING"
+                             description="Optional locale for field names and categorical values in the returned result"
+                             name="locale"
+                             ordinal="1"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                </ServiceDefinitions>
+                <EventDefinitions></EventDefinitions>
+                <ServiceMappings></ServiceMappings>
+                <ServiceImplementations></ServiceImplementations>
+                <Subscriptions></Subscriptions>
+            </ThingShape>
+            <ImplementedShapes></ImplementedShapes>
+            <SharedConfigurationTables></SharedConfigurationTables>
+            <InstanceDesignTimePermissions>
+                <Create></Create>
+                <Read></Read>
+                <Update></Update>
+                <Delete></Delete>
+                <Metadata></Metadata>
+            </InstanceDesignTimePermissions>
+            <InstanceRunTimePermissions></InstanceRunTimePermissions>
+            <InstanceVisibilityPermissions>
+                <Visibility></Visibility>
+            </InstanceVisibilityPermissions>
+        </ThingTemplate>
+    </ThingTemplates>
+</Entities>

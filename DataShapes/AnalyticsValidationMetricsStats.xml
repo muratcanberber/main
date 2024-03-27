@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Entities
+ majorVersion="9"
+ minorVersion="5"
+ universal="password">
+    <DataShapes>
+        <DataShape
+         aspect.isSystemObject="true"
+         baseDataShape=""
+         description="Statistics across folds of various metrics"
+         documentationContent=""
+         homeMashup=""
+         name="AnalyticsValidationMetricsStats"
+         projectName=""
+         tags="">
+            <avatar></avatar>
+            <DesignTimePermissions>
+                <Create></Create>
+                <Read></Read>
+                <Update></Update>
+                <Delete></Delete>
+                <Metadata></Metadata>
+            </DesignTimePermissions>
+            <RunTimePermissions></RunTimePermissions>
+            <VisibilityPermissions>
+                <Visibility></Visibility>
+            </VisibilityPermissions>
+            <ConfigurationTableDefinitions></ConfigurationTableDefinitions>
+            <ConfigurationTables></ConfigurationTables>
+            <FieldDefinitions>
+                <FieldDefinition
+                 aspect.dataShape="AnalyticsSimpleStatsValues"
+                 baseType="INFOTABLE"
+                 description="Statistics across folds of the percent of records that were correctly predicted (BOOLEAN, CATEGORICAL goals)"
+                 name="accuracyStats"
+                 ordinal="9"></FieldDefinition>
+                <FieldDefinition
+                 aspect.dataShape="AnalyticsSimpleStatsValues"
+                 baseType="INFOTABLE"
+                 description="Statistics across folds of the area under the ROC curve (BOOLEAN goals)"
+                 name="areaUnderCurveStats"
+                 ordinal="14"></FieldDefinition>
+                <FieldDefinition
+                 aspect.dataShape="AnalyticsConfusionMatrixStats"
+                 baseType="INFOTABLE"
+                 description="Matrix of statistics across folds for each confusion matrix entry (BOOLEAN, CATEGORICAL, ORDINAL goals)"
+                 name="confusionMatrixStats"
+                 ordinal="10"></FieldDefinition>
+                <FieldDefinition
+                 aspect.dataShape="AnalyticsSimpleStatsValues"
+                 baseType="INFOTABLE"
+                 description="Statistics across folds of the number of records observed false but predicted true (BOOLEAN goals)"
+                 name="falsePositiveRateStats"
+                 ordinal="8"></FieldDefinition>
+                <FieldDefinition
+                 aspect.dataShape="AnalyticsSimpleStatsValues"
+                 baseType="INFOTABLE"
+                 description="Statistics across folds of the Matthews Correlation Coefficient which is a comparison of true and false positives with true and false negatives (BOOLEAN, CATEGORICAL goals)"
+                 name="mccStats"
+                 ordinal="6"></FieldDefinition>
+                <FieldDefinition
+                 aspect.dataShape="AnalyticsSimpleStatsValues"
+                 baseType="INFOTABLE"
+                 description="Statistics across folds of the linear correlation between actual and predicted scores (-1 to 1, where 0 = no correlation and -1 or 1 = high correlation) (CONTINUOUS, ORDINAL goals)"
+                 name="pearsonCorrelationStats"
+                 ordinal="1"></FieldDefinition>
+                <FieldDefinition
+                 aspect.dataShape="AnalyticsSimpleStatsValues"
+                 baseType="INFOTABLE"
+                 description="Statistics across folds of the Precision or Positive Predictive Value which represents the fraction of true positives from positive instances predicted (BOOLEAN goals)"
+                 name="precisionStats"
+                 ordinal="11"></FieldDefinition>
+                <FieldDefinition
+                 aspect.dataShape="AnalyticsSimpleStatsValues"
+                 baseType="INFOTABLE"
+                 description="Statistics across folds of the Recall, Sensitivity, or True Positive Rate which represents the fraction of true positives from total positive instances (BOOLEAN goals)"
+                 name="recallStats"
+                 ordinal="12"></FieldDefinition>
+                <FieldDefinition
+                 aspect.dataShape="AnalyticsSimpleStatsValues"
+                 baseType="INFOTABLE"
+                 description="Statistics across folds of the Root Mean Squared Error with scores normalized between 0 and 1 (CONTINUOUS, ORDINAL goals)"
+                 name="rmseNormalizedStats"
+                 ordinal="2"></FieldDefinition>
+                <FieldDefinition
+                 aspect.dataShape="AnalyticsSimpleStatsValues"
+                 baseType="INFOTABLE"
+                 description="Statistics across folds of the Root Mean Squared Error which is the standard deviation of the differences between actual and predicted scores (CONTINUOUS, ORDINAL goals)"
+                 name="rmseStats"
+                 ordinal="3"></FieldDefinition>
+                <FieldDefinition
+                 aspect.dataShape="AnalyticsRocPairStats"
+                 baseType="INFOTABLE"
+                 description="List of statistics across folds of the ROC pairs used to build the ROC curve"
+                 name="rocCurveStats"
+                 ordinal="15"></FieldDefinition>
+                <FieldDefinition
+                 aspect.dataShape="AnalyticsSimpleStatsValues"
+                 baseType="INFOTABLE"
+                 description="Statistics across folds of the modified R-Squared value which takes into account the number of predictors used in the model (CONTINUOUS goals)"
+                 name="rSquaredAdjustedStats"
+                 ordinal="5"></FieldDefinition>
+                <FieldDefinition
+                 aspect.dataShape="AnalyticsSimpleStatsValues"
+                 baseType="INFOTABLE"
+                 description="Statistics across folds of the measure of how well a model fits to data (CONTINUOUS goals)"
+                 name="rSquaredStats"
+                 ordinal="4"></FieldDefinition>
+                <FieldDefinition
+                 aspect.dataShape="AnalyticsSimpleStatsValues"
+                 baseType="INFOTABLE"
+                 description="Statistics across folds of the Specificity, or True Negative Rate which represents the fraction of true negatives from total negative instances (BOOLEAN goals)"
+                 name="specificityStats"
+                 ordinal="13"></FieldDefinition>
+                <FieldDefinition
+                 aspect.dataShape="AnalyticsSimpleStatsValues"
+                 baseType="INFOTABLE"
+                 description="Statistics across folds of the number of records observed true and predicted true (BOOLEAN goals)"
+                 name="truePositiveRateStats"
+                 ordinal="7"></FieldDefinition>
+            </FieldDefinitions>
+        </DataShape>
+    </DataShapes>
+</Entities>

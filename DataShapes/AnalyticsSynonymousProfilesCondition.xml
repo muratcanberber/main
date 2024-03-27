@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Entities
+ majorVersion="9"
+ minorVersion="5"
+ universal="password">
+    <DataShapes>
+        <DataShape
+         aspect.isSystemObject="true"
+         baseDataShape=""
+         description="Ordered synonymous profiles condition"
+         documentationContent=""
+         homeMashup=""
+         name="AnalyticsSynonymousProfilesCondition"
+         projectName=""
+         tags="">
+            <avatar></avatar>
+            <DesignTimePermissions>
+                <Create></Create>
+                <Read></Read>
+                <Update></Update>
+                <Delete></Delete>
+                <Metadata></Metadata>
+            </DesignTimePermissions>
+            <RunTimePermissions></RunTimePermissions>
+            <VisibilityPermissions>
+                <Visibility></Visibility>
+            </VisibilityPermissions>
+            <ConfigurationTableDefinitions></ConfigurationTableDefinitions>
+            <ConfigurationTables></ConfigurationTables>
+            <FieldDefinitions>
+                <FieldDefinition
+                 baseType="NUMBER"
+                 description="Mean goal for all records that fit the profile"
+                 name="averageGoal"
+                 ordinal="6"></FieldDefinition>
+                <FieldDefinition
+                 baseType="LONG"
+                 description="Number of records that fit the profile"
+                 name="populationCount"
+                 ordinal="3"></FieldDefinition>
+                <FieldDefinition
+                 baseType="NUMBER"
+                 description="Percent of total population that fits the profile"
+                 name="populationPercentage"
+                 ordinal="4"></FieldDefinition>
+                <FieldDefinition
+                 baseType="STRING"
+                 description="ID for the profile"
+                 name="profileId"
+                 ordinal="8"></FieldDefinition>
+                <FieldDefinition
+                 baseType="NUMBER"
+                 description="Distance between the mean goals of the profile's population and the total population (in standard deviations)"
+                 name="stdDevFromMean"
+                 ordinal="2"></FieldDefinition>
+                <FieldDefinition
+                 baseType="NUMBER"
+                 description="Sum goal for all records that fit the profile"
+                 name="sumGoal"
+                 ordinal="5"></FieldDefinition>
+                <FieldDefinition
+                 aspect.dataShape="AnalyticsSynonymConditions"
+                 baseType="INFOTABLE"
+                 description="List of profile synonyms and their conditions"
+                 name="synonyms"
+                 ordinal="7"></FieldDefinition>
+                <FieldDefinition
+                 baseType="NUMBER"
+                 description="Measure evaluating the strength of the profile"
+                 name="zScore"
+                 ordinal="1"></FieldDefinition>
+            </FieldDefinitions>
+        </DataShape>
+    </DataShapes>
+</Entities>

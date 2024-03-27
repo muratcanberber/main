@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Entities
+ majorVersion="9"
+ minorVersion="5"
+ universal="password">
+    <DataShapes>
+        <DataShape
+         aspect.isSystemObject="true"
+         baseDataShape=""
+         description="Datashape for Deprecated Usage"
+         documentationContent=""
+         homeMashup=""
+         name="DeprecatedUsage"
+         projectName=""
+         tags="">
+            <avatar></avatar>
+            <DesignTimePermissions>
+                <Create></Create>
+                <Read></Read>
+                <Update></Update>
+                <Delete></Delete>
+                <Metadata></Metadata>
+            </DesignTimePermissions>
+            <RunTimePermissions></RunTimePermissions>
+            <VisibilityPermissions>
+                <Visibility></Visibility>
+            </VisibilityPermissions>
+            <ConfigurationTableDefinitions></ConfigurationTableDefinitions>
+            <ConfigurationTables></ConfigurationTables>
+            <FieldDefinitions>
+                <FieldDefinition
+                 aspect.friendlyName="Characteristic Name"
+                 aspect.isRequired="false"
+                 baseType="STRING"
+                 description="Characteristic name"
+                 name="characteristicName"
+                 ordinal="6"></FieldDefinition>
+                <FieldDefinition
+                 aspect.friendlyName="Characteristic Type"
+                 aspect.isRequired="false"
+                 baseType="STRING"
+                 description="Characteristic type"
+                 name="characteristicType"
+                 ordinal="5"></FieldDefinition>
+                <FieldDefinition
+                 aspect.friendlyName="Dependent Entity Name"
+                 aspect.isRequired="true"
+                 baseType="STRING"
+                 description="Dependent entity name"
+                 name="dependentEntityName"
+                 ordinal="2"></FieldDefinition>
+                <FieldDefinition
+                 aspect.friendlyName="Dependent Entity Type"
+                 aspect.isRequired="true"
+                 baseType="STRING"
+                 description="Dependent entity type"
+                 name="dependentEntityType"
+                 ordinal="3"></FieldDefinition>
+                <FieldDefinition
+                 aspect.friendlyName="Entity Name"
+                 aspect.isRequired="true"
+                 baseType="STRING"
+                 description="Entity name"
+                 name="entityName"
+                 ordinal="0"></FieldDefinition>
+                <FieldDefinition
+                 aspect.friendlyName="Entity Type"
+                 aspect.isRequired="true"
+                 baseType="STRING"
+                 description="Entity type"
+                 name="entityType"
+                 ordinal="1"></FieldDefinition>
+                <FieldDefinition
+                 aspect.friendlyName="Where Used"
+                 aspect.isRequired="false"
+                 baseType="JSON"
+                 description="Used-In information of dependent entity"
+                 name="whereUsed"
+                 ordinal="4"></FieldDefinition>
+            </FieldDefinitions>
+        </DataShape>
+    </DataShapes>
+</Entities>

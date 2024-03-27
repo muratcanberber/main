@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Entities
+ majorVersion="9"
+ minorVersion="5"
+ universal="password">
+    <DataShapes>
+        <DataShape
+         aspect.isSystemObject="true"
+         baseDataShape=""
+         description="Entity relationship report"
+         documentationContent=""
+         homeMashup=""
+         name="EntityRelationshipReport"
+         projectName=""
+         tags="">
+            <avatar></avatar>
+            <DesignTimePermissions>
+                <Create></Create>
+                <Read></Read>
+                <Update></Update>
+                <Delete></Delete>
+                <Metadata></Metadata>
+            </DesignTimePermissions>
+            <RunTimePermissions></RunTimePermissions>
+            <VisibilityPermissions>
+                <Visibility></Visibility>
+            </VisibilityPermissions>
+            <ConfigurationTableDefinitions></ConfigurationTableDefinitions>
+            <ConfigurationTables></ConfigurationTables>
+            <FieldDefinitions>
+                <FieldDefinition
+                 aspect.friendlyName="Characteristic Name"
+                 aspect.isPrimaryKey="false"
+                 baseType="STRING"
+                 description="The characteristic name used in the relationship"
+                 name="characteristicName"
+                 ordinal="1"></FieldDefinition>
+                <FieldDefinition
+                 aspect.friendlyName="Characteristic Type"
+                 aspect.isPrimaryKey="false"
+                 baseType="STRING"
+                 description="The characteristic type used in the relationship"
+                 name="characteristicType"
+                 ordinal="0"></FieldDefinition>
+                <FieldDefinition
+                 aspect.friendlyName="Entity Name"
+                 aspect.isPrimaryKey="false"
+                 baseType="STRING"
+                 description="The entity name"
+                 name="entityName"
+                 ordinal="4"></FieldDefinition>
+                <FieldDefinition
+                 aspect.friendlyName="Project Name"
+                 aspect.isPrimaryKey="false"
+                 baseType="STRING"
+                 description="The project the entity belongs to"
+                 name="entityProject"
+                 ordinal="2"></FieldDefinition>
+                <FieldDefinition
+                 aspect.friendlyName="Entity Type"
+                 aspect.isPrimaryKey="false"
+                 baseType="STRING"
+                 description="The entity type"
+                 name="entityType"
+                 ordinal="3"></FieldDefinition>
+                <FieldDefinition
+                 aspect.friendlyName="Reference Location"
+                 aspect.isPrimaryKey="false"
+                 baseType="STRING"
+                 description="The location of the use"
+                 name="location"
+                 ordinal="5"></FieldDefinition>
+                <FieldDefinition
+                 aspect.friendlyName="Location Name"
+                 aspect.isPrimaryKey="false"
+                 baseType="STRING"
+                 description="The location name"
+                 name="locationName"
+                 ordinal="6"></FieldDefinition>
+            </FieldDefinitions>
+        </DataShape>
+    </DataShapes>
+</Entities>
