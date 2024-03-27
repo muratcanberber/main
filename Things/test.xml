@@ -116,29 +116,27 @@
                                         // no return
                                         Resources["SourceControlFunctions"].ExportSourceControlledEntities(params);
                                         
-                                        //
-                                        //let params1 = {
-                                        //	path: "main" /* STRING */,
-                                        //	withSubsystems: true /* BOOLEAN {"defaultValue":false} */,
-                                        //	repositoryName: "VC" /* THINGNAME */
-                                        //};
-                                        //
-                                        //let data = Resources["SourceControlFunctions"].GetSourceControlledEntitiesDiff(params1);
-                                        //
-                                        //
-                                        //
-                                        //
-                                        //let params2 = {
-                                        //	fieldName: 'type' /* STRING */,
-                                        //	isCaseSensitive: true /* BOOLEAN {"defaultValue":false} */,
-                                        //	t: data /* INFOTABLE */,
-                                        //	value: 'Thing' /* STRING */
-                                        //};
-                                        //
-                                        //// result: INFOTABLE
-                                        //let result = Resources["InfoTableFunctions"].EQFilter(params2);
-                                        //
-                                        //
+                                        
+                                        let params1 = {
+                                        	path: "main" /* STRING */,
+                                        	withSubsystems: true /* BOOLEAN {"defaultValue":false} */,
+                                        	repositoryName: "VC" /* THINGNAME */
+                                        };
+                                        
+                                        let data = Resources["SourceControlFunctions"].GetSourceControlledEntitiesDiff(params1);
+                                        
+                                        
+                                        
+                                        
+                                        let params2 = {
+                                        	fieldName: 'type' /* STRING */,
+                                        	isCaseSensitive: true /* BOOLEAN {"defaultValue":false} */,
+                                        	t: data /* INFOTABLE */,
+                                        	value: 'Thing' /* STRING */
+                                        };
+                                        
+                                        // result: INFOTABLE
+                                        let result = Resources["InfoTableFunctions"].EQFilter(params2);
                                         ]]>
                                         </code>
                                     </Row>
@@ -172,9 +170,9 @@
                                         <![CDATA[
                                         let x = 22;
                                         
-                                        //this is changed
-                                        
-                                        let b = 22;
+                                        //this is changed again
+                                        //this is new command
+                                        let b = 45;
                                         ]]>
                                         </code>
                                     </Row>
