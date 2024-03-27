@@ -168,11 +168,7 @@
                                     <Row>
                                         <code>
                                         <![CDATA[
-                                        let x = 22;
-                                        
-                                        //this is changed again
-                                        //this is new command
-                                        let b = 45;
+                                        let x = 50;
                                         ]]>
                                         </code>
                                     </Row>
